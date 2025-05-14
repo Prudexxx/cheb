@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Чебурашка</title>
+
+    
+</head>
+<body>
+  
+    <div class="box">
+    <a class="strelka" href="https://prudexxx.github.io/NA/">&#8592</a>
+        <div><img class="logo" src="Снимок.jpg" alt=""></div>
+        <h1>
+            <span>Ч</span>
+            <span>е</span>
+            <span>б</span>
+            <span>у</span>
+            <span>р</span>
+            <span>а</span>
+            <span>ш</span>
+            <span>к</span>
+            <span>а</span>
+          </h1>
+          <h1 class="gradient-text">Первое собрание и отрытие было на Монастырской 96,<br> 8 июля 2014 года. </h1>
+          <button class="переключатель-кнопка" id="кнопка-переключения">Доступные вакантные служения</button>
+
+
+
+
+
+
+  <div class="скрываемый-текст" id="текст-для-переключения">
+  
+    
+      <p>Доступные служения <br>
+        c - свободные вакантные служения
+      </p>
+    
+
+
+
+
+  <div id="schedule-container"></div>
+
+
+
+        
+    
+          <video class="video" muted  src="video_2025-05-03_02-16-32.mp4" autoplay loop="loop"></video></video>
+          <br><br><br>
+          <label for="mySelect">Собрания проходят:</label>
+          <select id="mySelect" name="mySelect">
+            <option value="option1">Понедельник с 18:30 до 20:00</option>
+            <option value="option1">Вторник с 18:30 до 20:00</option>
+            <option value="option1">Среда с 18:30 до 20:00</option>
+            <option value="option1">Четверг с 18:30 до 20:00</option>
+            <option value="option1">Пятница с 18:30 до 20:00</option>
+            <option value="option1">Суббота с 18:30 до 20:00</option>
+            <option value="option1">Воскресенье утро c 10:30 до 12:00 </option>
+            <option value="option1"> Воскресенье вечер с 18:30 до 20:00</option>
+            <select>
+            
+    </div>
+  
+    <div class="box1">
+      <h2>Отправить анонимный вопрос на собрание гр.Чебурашка</h2>
+    <form id="telegramForm">
+      <label for="message">Сообщение:</label><br>
+      <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+      <button type="submit">Отправить</button>
+    </form>
+
+  
+
+    
+
+    
+  <script>
+    // Получаем элементы по их ID
+    const кнопкаПереключения = document.getElementById('кнопка-переключения');
+    const текстДляПереключения = document.getElementById('текст-для-переключения');
+
+    // Добавляем слушатель события клика на кнопку
+    кнопкаПереключения.addEventListener('click', function() {
+      // Переключаем класс "показан" на элементе текста
+      текстДляПереключения.classList.toggle('показан');
+
+      // Изменяем текст кнопки в зависимости от состояния текста
+      if (текстДляПереключения.classList.contains('показан')) {
+        кнопкаПереключения.textContent = 'Скрыть вакантные служения';
+      } else {
+        кнопкаПереключения.textContent = 'Вакантные служения';
+      }
+    });
+  </script>
+
+    <script>
+      // Телеграмм отправка==========================================================
+      const TELEGRAM_TOKEN   = '7831903358:AAHIkRNmstPV5QYoRC5GYqGiuGppTlLiotk'; // вставьте сюда токен бота
+      const CHAT_ID = '-1002657190873'; // вставьте сюда ваш chat_id     
+    
+      document.getElementById('telegramForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+    
+        const message = document.getElementById('message').value.trim();
+    
+        if (!message) {
+          alert('Пожалуйста, введите сообщение.');
+          return;
+        }
+    
+        const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
+    
+        axios.post(url, {
+          chat_id: CHAT_ID,
+          text: message
+        })
+        .then(function(response) {
+          alert('Сообщение успешно отправлено!');
+          document.getElementById('telegramForm').reset();
+        })
+        .catch(function(error) {
+          alert('Ошибка при отправке сообщения. Проверьте правильность данных и наличие доступа.');
+          console.error(error);
+        });
+      });
+    </script>
+    <script>
+    // =Слйдер ==========================================
+    let currentIndex = 0;
+      const slides = document.querySelectorAll('.slide');
+      
+      function showSlide(index) {
+          slides.forEach((slide, i) => {
+              slide.style.display = (i === index) ? 'block' : 'none';
+          });
+      }
+      
+      document.getElementById('prev').addEventListener('click', function() {
+          currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+          showSlide(currentIndex);
+      });
+      
+      document.getElementById('next').addEventListener('click', function() {
+          currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+          showSlide(currentIndex);
+      });
+      
+      // Инициализировать первый слайд
+      showSlide(currentIndex);</script>
+    </div>
+
+    
+    
+  
+    <!-- Подключение Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- Кнопка скрииипт -->
+    <script>
+const button = document.getElementById('кнопка-переключения');
+
+button.addEventListener('mousedown', () => {
+  // Когда нажимаете — добавляем класс для эффекта
+  button.classList.add('pressed');
+});
+
+button.addEventListener('mouseup', () => {
+  // Когда отпускаете — убираем класс, возвращая к исходному состоянию
+  button.classList.remove('pressed');
+});
+
+// Можно также добавить эффект при клике, если хотите
+button.addEventListener('click', () => {
+  // Можно выполнить дополнительные действия при клике
+  console.log('Кнопка нажата!');
+});
+</script>
+   <script src="slugeniy.js"></script>
+
+<!-- скрипт ддля создания таблицыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы -->
+ <script>
+// Массив служащих и их расписания
+
+
+const дниНедели = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
+
+// Функция для создания таблицы
+function создастТаблицу() {
+  const container = document.getElementById("schedule-container");
+  const grid = document.createElement("div");
+  grid.className = "расписание-машин";
+
+  // Создаем заголовки
+  // Первая ячейка для служащего
+  const заголовок = document.createElement("div");
+  заголовок.className = "ячейка заголовок вертикальный-заголовок";
+  заголовок.innerText = "Служения/Дни";
+  grid.appendChild(заголовок);
+
+  // Заголовки дней
+  дниНедели.forEach(день => {
+    const ячейка = document.createElement("div");
+    ячейка.className = "ячейка заголовок";
+    ячейка.innerText = день;
+    grid.appendChild(ячейка);
+  });
+
+  // Создаем строки для каждого служащего
+  служащие.forEach(служащий => {
+    // Имя служащего (вертикальный заголовок)
+    const имяЯчейка = document.createElement("div");
+    имяЯчейка.className = "ячейка заголовок вертикальный-заголовок";
+    имяЯчейка.innerText = служащий.имя;
+    grid.appendChild(имяЯчейка);
+
+    // Ячейки для каждого дня
+    дниНедели.forEach(день => {
+      const ячейка = document.createElement("div");
+      ячейка.className = "ячейка";
+      ячейка.innerText = служащий.расписание[день] || "";
+      // Можно добавить возможность редактирования
+      ячейка.contentEditable = true;
+      // Обновляем массив при редактировании
+      ячейка.addEventListener("blur", () => {
+        служащий.расписание[день] = ячейка.innerText.trim();
+      });
+      grid.appendChild(ячейка);
+    });
+  });
+
+  container.appendChild(grid);
+}
+
+// Вызов функции при загрузке страницы
+window.onload = создастТаблицу;
+</script>
+</body>
+
+</html>
+
